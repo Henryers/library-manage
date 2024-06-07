@@ -52,13 +52,13 @@
 
 E-R 图如下图所示：
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg)
+![img](images/ER1.png)
 
 （手绘E-R图）
 
 
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png)
+![img](images/ER2.png)
 
 （IDEA生成的数据库表关系图）
 
@@ -114,19 +114,19 @@ E-R 图如下图所示：
 
 采用ECharts可视化库，来进行各种数据图表的绘制，包括图书读者分类数量，借书还书统计以及人气书籍Top排行榜等，具体展示图如下：
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png)
+![img](images/chart1.png)
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image008.png)
+![img](images/chart2.png)
 
 #### （2）图书模块
 
 包括图书分类和图书列表，均实现了对应的增删改查功能，管理员点击相关按钮即可操作。
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image010.png)
+![img](images/addbook.png)
 
 （添加分类示意图）
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image012.png)
+![img](images/booklist.png)
 
 （图书列表分页展示图）
 
@@ -134,11 +134,11 @@ E-R 图如下图所示：
 
 与图书模块功能类似，读者分类和读者列表均有对应的增删改查功能。
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image014.png)
+![img](images/readerctg.png)
 
 （读者分类分页查询）
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image016.png)
+![img](images/readerupdate.png)
 
 （读者信息修改）
 
@@ -146,19 +146,19 @@ E-R 图如下图所示：
 
 进入借书页面，页面下方会分页展示读者列表和图书列表，其中图书都是当前处于图书馆中未被出借的书。管理员可以单选其中一个读者和一本书籍，表示借书，对应的上方表单会回显对应的读者和图书的id，再选择借书日期后便可进行借书记录的新增操作。
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image018.png)
+![img](images/borrow.png)
 
 （新增借书页面）
 
 进入记录展示页面，会分页显示所有借还书记录，同时状态栏还会以不同颜色标准不同的还书状态。
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image020.png)
+![img](images/lendreturn.png)
 
 （记录展示）
 
 进行还书时，需要选择还书日期（在借书日期之后且不能晚于当前日期），填写完相关信息后即可还书，本页面下面还有借书人和对应书籍的详细信息展示。
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image022.png)
+![img](images/return.png)
 
 （还书页面）
 
@@ -166,11 +166,11 @@ E-R 图如下图所示：
 
 在个人设置页面中，管理员可以修改个人信息，修改完密码会跳转到登录页进行重新登录操作，也可以新注册一个管理员账号进行登录，登录模块用到了jwt校验，token生成等知识。
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image024.png)
+![img](images/manager.png)
 
 （个人信息页）
 
-![image-20240607164646811](C:\Users\cyhrecold\AppData\Roaming\Typora\typora-user-images\image-20240607164654306.png)
+![img](images\login.png)
 
 （登录页）
 
@@ -186,11 +186,11 @@ E-R 图如下图所示：
 
 mapper中相关的sql命令如下图：
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image028.png)
+![img](images/mapper1.png)
 
 （mapper接口中写简单的sql）
 
-![img](file:///C:/Users/CYHREC~1/AppData/Local/Temp/msohtmlclip1/01/clip_image030.png)
+![img](images/mapper2.png)
 
 （mapper.xml文件中写较为复杂的sql）
 
