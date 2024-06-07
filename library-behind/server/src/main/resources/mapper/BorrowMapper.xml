@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.cyhgraph.mapper.BorrowMapper">
+
+    <select id="page" resultType="fun.cyhgraph.entity.LendReturn">
+        select * from lend_return
+        <where>
+            <if test="bId != null and bId != ''">
+                and b_id = #{bId}
+            </if>
+            <if test="rId != null and rId != ''">
+                and r_id = #{rId}
+            </if>
+            <if test="notes != null and notes != ''">
+                and notes like concat('%', #{notes}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getBIdsByDate" resultType="java.lang.Integer">
+        select distinct b_id from lend_return
+        <where>
+            <if test="begin != null">and lend_date &gt; #{begin}</if>
+        </where>
+    </select>
+
+    <select id="getBookAmount" resultType="java.lang.Integer">
+        select count(*) from lend_return
+        <where>
+            <if test="begin != null">and lend_date &gt; #{begin}</if>
+            <if test="bId != null">and b_id = #{bId}</if>
+        </where>
+    </select>
+
+    <select id="getRIdsByDate" resultType="java.lang.Integer">
+        select distinct r_id from lend_return
+        <where>
+            <if test="begin != null">and lend_date &gt; #{begin}</if>
+        </where>
+    </select>
+
+    <select id="getReaderAmount" resultType="java.lang.Integer">
+        select count(id) from lend_return
+        <where>
+            <if test="begin != null">and lend_date &gt;= #{begin}</if>
+            <if test="rId != null">and r_id = #{rId}</if>
+        </where>
+    </select>
+
+    <select id="getReaderHad" resultType="java.lang.Integer">
+        select count(id) from lend_return
+        <where>
+            <if test="lendDate != null">
+                and (return_date IS NULL OR return_date >= #{lendDate})
+            </if>
+            <if test="rId != null">and r_id = #{rId}</if>
+        </where>
+    </select>
+
+    <update id="update">
+        update lend_return
+        <set>
+            <if test="rId != null">r_id = #{rId},</if>
+            <if test="bId != null">b_id = #{bId},</if>
+            <if test="lendDate != null">lend_date = #{lendDate},</if>
+            <if test="returnDate != null">return_date = #{returnDate},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="notes != null">notes = #{notes}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBatch">
+        delete from lend_return where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

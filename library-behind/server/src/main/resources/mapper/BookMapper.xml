@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.cyhgraph.mapper.BookMapper">
+    <delete id="deleteBatch">
+        delete from book where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="page" resultType="fun.cyhgraph.entity.Book">
+        select * from book
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="categoryId != null and categoryId != ''">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+
+    <update id="update">
+        update book
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="author != null">author = #{author},</if>
+            <if test="press != null">press = #{press},</if>
+            <if test="publishDate != null">publish_date = #{publishDate},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="pageNumber != null">page_number = #{pageNumber},</if>
+            <if test="keywords != null">keywords = #{keywords},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="notes != null">notes = #{notes},</if>
+            <if test="categoryId != null">category_id = #{categoryId}</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

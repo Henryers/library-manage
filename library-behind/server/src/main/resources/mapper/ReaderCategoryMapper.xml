@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.cyhgraph.mapper.ReaderCategoryMapper">
+
+    <select id="page" resultType="fun.cyhgraph.entity.ReaderCategory">
+        select * from r_category
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+        </where>
+    </select>
+
+    <update id="update">
+        update r_category
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="lendPeriod != null">lend_period = #{lendPeriod},</if>
+            <if test="effectPeriod != null">effect_period = #{effectPeriod},</if>
+            <if test="notes != null">notes = #{notes}</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

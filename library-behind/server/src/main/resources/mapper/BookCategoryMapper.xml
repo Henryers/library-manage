@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fun.cyhgraph.mapper.BookCategoryMapper">
+
+    <select id="page" resultType="fun.cyhgraph.entity.BookCategory">
+        select * from b_category
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="keywords != null and keywords != ''">
+                and keywords like concat('%', #{keywords}, '%')
+            </if>
+        </where>
+    </select>
+
+    <update id="update">
+        update b_category
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="keywords != null">keywords = #{keywords},</if>
+            <if test="notes != null">notes = #{notes}</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
