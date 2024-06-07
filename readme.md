@@ -170,7 +170,7 @@ E-R 图如下图所示：
 
 （个人信息页）
 
-![img](images\login.png)
+![img](images/login.png)
 
 （登录页）
 
