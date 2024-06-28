@@ -3,6 +3,7 @@ create database library;
 use library;
 
 -- 1、读者种类表
+drop table if exists r_category;
 create table r_category(
     id int primary key auto_increment,
     name varchar(32) unique not null,
@@ -11,9 +12,10 @@ create table r_category(
     effect_period date not null comment '仅在毕业前借书有效',
     notes varchar(255) null
 );
-drop table r_category;
+
 
 -- 2、读者表
+drop table if exists reader;
 create table reader(
     id int primary key auto_increment,
     name varchar(32) not null,
@@ -29,18 +31,20 @@ create table reader(
 -- 添加外键约束关联: 读者和对应的分类
 alter table reader add constraint fk_r_category_id foreign key (category_id)
     references r_category(id) on update cascade on delete cascade;
-drop table reader;
+
 
 -- 3、书籍种类表
+drop table if exists b_category;
 create table b_category(
     id int primary key auto_increment,
     name varchar(32) unique not null,
     keywords varchar(32) null,
     notes varchar(255) null
 );
-drop table b_category;
+
 
 -- 4、书籍表
+drop table if exists book;
 create table book(
     id int primary key auto_increment,
     name varchar(32) not null,
@@ -58,9 +62,10 @@ create table book(
 -- 添加外键约束关联: 书籍和对应的分类
 alter table book add constraint fk_b_category_id foreign key (category_id)
     references b_category(id) on update cascade on delete cascade;
-drop table book;
+
 
 -- 5、借书还书表
+drop table if exists lend_return;
 create table lend_return(
     id int primary key auto_increment,
     r_id int not null,
@@ -75,18 +80,16 @@ alter table lend_return add constraint fk_r_id foreign key (r_id)
     references reader(id) on update cascade on delete cascade;
 alter table lend_return add constraint fk_b_id foreign key (b_id)
     references book(id) on update cascade on delete cascade;
-drop table lend_return;
 -- return_date可以为null
 alter table lend_return modify return_date date null;
 
 -- 6、管理员表
+drop table if exists manager;
 create table manager(
     id int primary key auto_increment,
     name varchar(32) unique not null,
     password varchar(32) not null
 );
-drop table manager;
-
 
 -- 示例数据
 -- 插入示例数据到 b_category 表中
